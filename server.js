@@ -49,7 +49,7 @@ app.use(cors())
 
 app.get("/", (req, res) => {
     console.log("Root")
-    res.send(db)
+    res.send("UP AND RUNNING")
 })
 
 app.post('/signin', (req, res) => {
@@ -73,6 +73,6 @@ app.put("/image", (req, res) => {
     update.imageUpdate(req, res, database)
 })
 
-app.listen(3001, () => {
-    console.log("Up and running at port:3001")
+app.listen(process.env.port || 3000, () => {
+    console.log("Up and running at port:" + process.env.port || 3000)
 })
