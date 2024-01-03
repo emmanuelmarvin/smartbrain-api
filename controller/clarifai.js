@@ -1,10 +1,10 @@
 const { ClarifaiStub, grpc } = require("clarifai-nodejs-grpc");
 
-const PAT = 'dc598847a9f94df3a3d8ead1bb3e2c8a';
+const PAT = process.env.PAT;
 // // Specify the correct user_id/app_id pairings
 // // Since you're making inferences outside your app's scope
-const USER_ID = '59o90vi1eyh6';
-const APP_ID = 'test';
+const USER_ID = process.env.USER_ID;
+const APP_ID = process.env.APP_ID;
 // Change these to whatever model and image URL you want to use
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';

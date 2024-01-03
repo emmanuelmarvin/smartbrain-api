@@ -12,36 +12,14 @@ const clarifai = require('./controller/clarifai')
 const database = knex({
     client: 'pg',
     connection: {
-        host: '127.0.0.1',
-        user: 'postgres',
-        password: 'root',
-        database: 'smartbrain',
+        host: process.env.DB_URL,
+        user: process.env.DB_USER,
+        password: process.env.DB_PWD,
+        database: process.env.DB_NAME,
     },
 });
 
 
-
-
-
-const db = {
-    users: [
-        {
-            id: 123,
-            name: "John",
-            email: "john.doe318@gmail.com",
-            password: "mortadela01",
-            entries: 0,
-            createdAt: new Date
-        }, {
-            id: 1234,
-            name: "Vanila",
-            email: "vanila.sca@gmail.com",
-            password: "sousa2014",
-            entries: 0,
-            createdAt: new Date
-        }
-    ]
-}
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -73,6 +51,6 @@ app.put("/image", (req, res) => {
     update.imageUpdate(req, res, database)
 })
 
-app.listen(process.env.port || 3000, () => {
-    console.log("Up and running at port:" + process.env.port || 3000)
+app.listen(3001, () => {
+    console.log("Up and running at port:3001")
 })
