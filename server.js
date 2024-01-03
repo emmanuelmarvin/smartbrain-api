@@ -1,0 +1,78 @@
+const bodyParser = require("body-parser")
+const express = require("express")
+const cors = require('cors')
+const app = express()
+const knex = require('knex')
+const bcrypt = require('bcrypt-node')
+const register = require("./controller/register")
+const signin = require("./controller/signin")
+const fetchProfile = require("./controller/fetchProfile")
+const update = require("./controller/update")
+const clarifai = require('./controller/clarifai')
+const database = knex({
+    client: 'pg',
+    connection: {
+        host: '127.0.0.1',
+        user: 'postgres',
+        password: 'root',
+        database: 'smartbrain',
+    },
+});
+
+
+
+
+
+const db = {
+    users: [
+        {
+            id: 123,
+            name: "John",
+            email: "john.doe318@gmail.com",
+            password: "mortadela01",
+            entries: 0,
+            createdAt: new Date
+        }, {
+            id: 1234,
+            name: "Vanila",
+            email: "vanila.sca@gmail.com",
+            password: "sousa2014",
+            entries: 0,
+            createdAt: new Date
+        }
+    ]
+}
+
+app.use(bodyParser.json())
+app.use(cors())
+
+
+app.get("/", (req, res) => {
+    console.log("Root")
+    res.send(db)
+})
+
+app.post('/signin', (req, res) => {
+    signin.handleSign(req, res, database, bcrypt)
+})
+
+app.post("/register", (req, res) => {
+    register.handleRegister(req, res, database, bcrypt)
+})
+
+
+app.get("/profile/:id", (req, res) => {
+    fetchProfile.getProfile(req, res, database)
+})
+
+app.post("/face-detection", (req, res) => {
+    clarifai.detectFace(req, res)
+})
+
+app.put("/image", (req, res) => {
+    update.imageUpdate(req, res, database)
+})
+
+app.listen(3001, () => {
+    console.log("Up and running at port:3001")
+})
