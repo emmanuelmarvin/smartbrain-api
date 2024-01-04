@@ -1,10 +1,10 @@
-const handleRegister = (req, res, database, bcrypt) => {
+const handleRegister = async (req, res, database, bcrypt) => {
     const { email, name, password } = req.body
     const hash = bcrypt.hashSync(password);
     if (!email || !name || !password) {
         return res.status(400).json('its a bad request over here');
     }
-    database.transaction(trx => {
+    await database.transaction(trx => {
         trx.insert({
             hash: hash,
             email: email
