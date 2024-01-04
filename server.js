@@ -14,7 +14,7 @@ const database = knex({
     version: "15",
 
     connection: {
-        // connectString: process.env.DB_CONNECT,
+        connectString: process.env.DB_CONNECT,
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
         port: process.env.DB_PORT,
