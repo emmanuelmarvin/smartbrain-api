@@ -12,10 +12,13 @@ const clarifai = require('./controller/clarifai')
 const database = knex({
     client: 'pg',
     connection: {
-        host: process.env.DB_URL,
+        connectString: process.env.DB_CONNECT,
+        host: process.env.DB_HOST,
         user: process.env.DB_USER,
+        port: process.env.DB_PORT,
         password: process.env.DB_PWD,
         database: process.env.DB_NAME,
+        ssl: false
 
     },
 });
