@@ -20,7 +20,7 @@ const database = knex({
         port: process.env.DB_PORT,
         password: process.env.DB_PWD,
         database: process.env.DB_NAME,
-
+        ssl: true
 
     },
 });
