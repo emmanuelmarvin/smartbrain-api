@@ -11,7 +11,10 @@ const update = require("./controller/update")
 const clarifai = require('./controller/clarifai')
 const database = knex({
     client: 'pg',
-    connection: process.env.DB_CONNECT,
+    connection: {
+        connectString: process.env.DB_CONNECT,
+        ssl: { rejectUnauthorized: false }
+    },
 });
 
 
