@@ -14,12 +14,12 @@ const database = knex({
     version: "15",
 
     connection: {
-        connectString: 'postgres://marvin:YvIfyNoNXqaXg9YDOSKATvFErx7qtVFO@dpg-cmaipif109ks73fev9cg-a.oregon-postgres.render.com/smartbrain_5vpp',
-        host: 'dpg-cmaipif109ks73fev9cg-a.oregon-postgres.render.com',
-        user: 'marvin',
+        connectString: process.env.DB_CONNECT,
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
         port: 5432,
-        password: 'YvIfyNoNXqaXg9YDOSKATvFErx7qtVFO',
-        database: 'smartbrain_5vpp',
+        password: process.env.DB_PWD,
+        database: process.env.DB_NAME,
         ssl: true
 
     },
