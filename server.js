@@ -12,7 +12,7 @@ const clarifai = require('./controller/clarifai')
 const database = knex({
     client: 'pg',
     version: "15",
-    acquireConnectionTimeout: 60000,
+
     connection: {
         // connectString: process.env.DB_CONNECT,
         host: process.env.DB_HOST,
