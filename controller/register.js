@@ -37,7 +37,7 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
         } else {
             const { data, error } = await supabase
                 .from('users')
-                .select("*")
+                .select()
                 .eq('email', email)
             if (error) {
 
