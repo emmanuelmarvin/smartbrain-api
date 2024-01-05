@@ -48,8 +48,8 @@ app.post('/signin', (req, res) => {
     signin.handleSign(req, res, database, bcrypt)
 })
 
-app.post("/register", (req, res) => {
-    register.handleRegister(req, res, supabase, bcrypt)
+app.post("/register", async (req, res) => {
+    await register.handleRegister(req, res, supabase, bcrypt)
 })
 
 
