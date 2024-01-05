@@ -44,7 +44,7 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
                 res.status(400).json(error)
                 return;
             }
-            res.json(data['data'][0])
+            res.json(data['data'])
 
         }
 
