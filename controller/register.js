@@ -34,8 +34,8 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
                 .select()
                 .is('email', email)
             if (error) {
-                console.log(error)
-                res.status(400).json("unable to register er00x03 ")
+
+                res.status(400).json(error)
                 return;
             } else {
                 res.json(data)
