@@ -14,7 +14,7 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
         })
     if (error) {
         console.log(error)
-        res.status(400).json("unable to register er00x01 ")
+        res.status(400).json(error)
         return;
     } else {
         const { error2 } = await supabase
