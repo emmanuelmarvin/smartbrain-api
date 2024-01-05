@@ -20,8 +20,8 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
         const { error2 } = await supabase
             .from('users')
             .insert({
-                name: "test",
-                email: 'test@test.com',
+                name: name,
+                email: email,
                 entries: 0,
 
             })
