@@ -5,23 +5,29 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
         return res.status(400).json('its a bad request over here');
     }
 
-    const { error } = await supabase
+    const { data, error } = await supabase
         .from('login')
-        .insert({
+        .upsert({
             hash: hash,
             email: email,
 
         })
+
+
     if (error) {
         console.log(error)
         res.status(400).json(error)
         return;
-    } else {
+    }
+
+
+
+    else {
         const { error2 } = await supabase
             .from('users')
             .insert({
                 name: name,
-                email: email,
+                email: ['data'][0]['email'],
                 entries: 0,
 
             })
@@ -32,13 +38,13 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
             const { data, error } = await supabase
                 .from('users')
                 .select()
-                .is('email', email)
+                .eq('email', email)
             if (error) {
 
                 res.status(400).json(error)
                 return;
             } else {
-                res.json(data)
+                res.json(['data'][0])
             }
         }
 
