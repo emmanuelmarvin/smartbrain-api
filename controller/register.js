@@ -1,4 +1,4 @@
-const handleRegister = async (req, res, database, bcrypt) => {
+const handleRegister = async (req, res, supabase, bcrypt) => {
     const { email, name, password } = req.body
     const hash = bcrypt.hashSync(password);
     if (!email || !name || !password) {
@@ -30,15 +30,15 @@ const handleRegister = async (req, res, database, bcrypt) => {
             res.status(400).json("unable to register er00x02 ")
         } else {
             const { data, error } = await supabase
-                .from('email')
+                .from('users')
                 .select()
-                .is('id', email)
+                .is('email', email)
             if (error) {
                 console.log(error)
                 res.status(400).json("unable to register er00x03 ")
                 return;
             } else {
-                res.json(users[0])
+                res.json(data)
             }
         }
 

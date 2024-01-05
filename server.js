@@ -28,8 +28,8 @@ const database = knex({
 
 
 const supabase = createClient(
-    'https://zsdylsmpmfwhzgioymfj.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzZHlsc21wbWZ3aHpnaW95bWZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQzOTYyNzAsImV4cCI6MjAxOTk3MjI3MH0.6nmvhzCbymF1w7YlJlc05KjDteiG-LH9JRyB4RfhHBc',
+    process.env.SU_URL,
+    process.env.SU_API,
 
 );
 
@@ -49,7 +49,7 @@ app.post('/signin', (req, res) => {
 })
 
 app.post("/register", (req, res) => {
-    register.handleRegister(req, res, database, bcrypt)
+    register.handleRegister(req, res, supabase, bcrypt)
 })
 
 
