@@ -27,7 +27,7 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
             .from('users')
             .insert({
                 name: name,
-                email: data1['data'][0]['email'],
+                email: email,
                 entries: 0,
 
             })
@@ -44,7 +44,7 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
                 res.status(400).json(error)
                 return;
             } else {
-                res.json(data['data'][0])
+                res.json(data[0])
             }
         }
 
