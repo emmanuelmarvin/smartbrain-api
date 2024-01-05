@@ -9,6 +9,7 @@ const signin = require("./controller/signin")
 const fetchProfile = require("./controller/fetchProfile")
 const update = require("./controller/update")
 const clarifai = require('./controller/clarifai')
+const { createClient } = require('@supabase/supabase-js')
 const database = knex({
     client: 'pg',
     version: "15",
@@ -24,6 +25,13 @@ const database = knex({
 
     },
 });
+
+
+const supabase = createClient(
+    'https://zsdylsmpmfwhzgioymfj.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzZHlsc21wbWZ3aHpnaW95bWZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQzOTYyNzAsImV4cCI6MjAxOTk3MjI3MH0.6nmvhzCbymF1w7YlJlc05KjDteiG-LH9JRyB4RfhHBc',
+
+);
 
 
 
