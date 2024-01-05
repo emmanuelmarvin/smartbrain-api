@@ -22,35 +22,36 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
 
 
 
-    else {
-        const { error2 } = await supabase
-            .from('users')
-            .insert({
-                name: name,
-                email: data1['data'][0]['email'],
-                entries: 0,
 
-            })
-        if (error2) {
-            console.log(error)
-            res.status(400).json("unable to register er00x02 ")
-        } else {
-            const { data, error } = await supabase
-                .from('users')
-                .select('email')
-                .eq('email', email)
-            if (error) {
+    const { error2 } = await supabase
+        .from('users')
+        .insert({
+            name: name,
+            email: email,
+            entries: 0,
 
-                res.status(400).json(error)
-                return;
-            }
-            res.json(data.toString())
-
-        }
-
-        console.log('done')
-
+        })
+    if (error2) {
+        console.log(error2)
+        res.status(400).json("unable to register er00x02 ")
+        return
     }
+    const { data, error3 } = await supabase
+        .from('users')
+        .select('email')
+        .eq('email', email)
+    if (error3) {
+
+        res.status(400).json(error)
+        return;
+    }
+    res.json(data)
+
+
+
+    console.log('done')
+
+
 
 
 }
