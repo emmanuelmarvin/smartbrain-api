@@ -5,7 +5,7 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
         return res.status(400).json('its a bad request over here');
     }
 
-    const { data, error } = await supabase
+    const { data1, error } = await supabase
         .from('login')
         .upsert({
             hash: hash,
@@ -27,7 +27,7 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
             .from('users')
             .insert({
                 name: name,
-                email: ['data'][0]['email'],
+                email: data1['data'][0]['email'],
                 entries: 0,
 
             })
@@ -37,14 +37,14 @@ const handleRegister = async (req, res, supabase, bcrypt) => {
         } else {
             const { data, error } = await supabase
                 .from('users')
-                .select()
+                .select('email')
                 .eq('email', email)
             if (error) {
 
                 res.status(400).json(error)
                 return;
             } else {
-                res.json(['data'][0])
+                res.json(data['data'][0])
             }
         }
 
