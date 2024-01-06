@@ -9,8 +9,8 @@ const handleSign = async (req, res, supabase, bcrypt) => {
         .eq('email', email)
     if (error3) {
 
-        res.status(400).json("failed to sign in")
-        return;
+        return res.status(400).json("failed to sign in")
+
     }
     const isTrue = bcrypt.compareSync(password, data[0]['hash']);
     if (isTrue) {
