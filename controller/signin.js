@@ -15,7 +15,7 @@ const handleSign = async (req, res, supabase, bcrypt) => {
 
     const isTrue = bcrypt.compareSync(password, data[0]['hash']);
     if (isTrue) {
-        const { data, error3 } = await supabase
+        const { data1, error3 } = await supabase
             .from('users')
             .select()
             .eq('email', email)
@@ -24,7 +24,7 @@ const handleSign = async (req, res, supabase, bcrypt) => {
             return res.status(400).json("sign in error")
 
         }
-        res.json(data[0])
+        res.json(data1[0])
     } else {
         res.status(400).json('Wrong credentials')
     }
