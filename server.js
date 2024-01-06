@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
 })
 
 app.post('/signin', async (req, res) => {
-    await signin.handleSign(req, res, database, bcrypt)
+    await signin.handleSign(req, res, supabase, bcrypt)
 })
 
 app.post("/register", async (req, res) => {
