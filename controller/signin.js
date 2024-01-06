@@ -12,12 +12,13 @@ const handleSign = async (req, res, supabase, bcrypt) => {
         return res.status(400).json("failed to sign in")
 
     }
-    const isTrue = bcrypt.compareSync(password, data[0]['hash']);
-    if (isTrue) {
-        res.json(data)
-    } else {
-        res.status(400).json('Wrong credentials')
-    }
+    res.json(data)
+    // const isTrue = bcrypt.compareSync(password, data[0]['hash']);
+    // if (isTrue) {
+    //     res.json(data)
+    // } else {
+    //     res.status(400).json('Wrong credentials')
+    // }
 
 
 }
