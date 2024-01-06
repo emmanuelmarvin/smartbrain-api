@@ -25,7 +25,8 @@ const handleSign = async (req, res, supabase, bcrypt) => {
             return res.status(400).json("sign in error")
 
         }
-        res.json(data1[0])
+        console.log(data1)
+        res.json('sucess')
     } else {
         res.status(400).json('Wrong credentials')
     }
