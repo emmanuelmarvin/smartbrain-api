@@ -14,7 +14,7 @@ const handleSign = async (req, res, supabase, bcrypt) => {
     }
     const isTrue = bcrypt.compareSync(password, data[0]['hash']);
     if (isTrue) {
-        res.json(data[0])
+        res.json(data)
     } else {
         res.status(400).json('Wrong credentials')
     }
