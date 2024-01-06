@@ -44,8 +44,8 @@ app.get("/", (req, res) => {
     res.send("UP AND RUNNING")
 })
 
-app.post('/signin', (req, res) => {
-    signin.handleSign(req, res, database, bcrypt)
+app.post('/signin', async (req, res) => {
+    await signin.handleSign(req, res, database, bcrypt)
 })
 
 app.post("/register", async (req, res) => {

@@ -1,24 +1,25 @@
-const handleSign = (req, res, database, bcrypt) => {
+const handleSign = async (req, res, supabase, bcrypt) => {
     const { email, password } = req.body;
     if (!email || !password) {
         return res.status(400).json('its a bad signin request over here');
     }
-    database.select('email', 'hash').from("login")
-        .where('email', '=', email)
-        .then(data => {
+    const { data, error3 } = await supabase
+        .from('users')
+        .select()
+        .eq('email', email)
+    if (error3) {
 
-            const isTrue = bcrypt.compareSync(password, data[0]['hash']);
-            if (isTrue) {
-                return database.select('*').from('users')
-                    .where('email', '=', email)
-                    .then(user => {
-                        res.json(user[0])
-                    })
-                    .catch(err => res.status(400).json('Unable to get user'))
-            } else {
-                res.json('wrong outPut')
-            }
-        }).catch(err => res.status(400).json('Wrong credentials'))
+        res.status(400).json("failed to sign in")
+        return;
+    }
+    const isTrue = bcrypt.compareSync(password, data[0]['hash']);
+    if (isTrue) {
+        res.json(data[0])
+    } else {
+        res.status(400).json('Wrong credentials')
+    }
+
+
 }
 
 module.exports = {
