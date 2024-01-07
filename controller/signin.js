@@ -16,11 +16,11 @@ const handleSign = async (req, res, supabase, bcrypt) => {
 
     const isTrue = bcrypt.compareSync(password, data[0]['hash']);
     if (isTrue) {
-        const { data, error3 } = await supabase
+        const { data, error } = await supabase
             .from('users')
             .select()
             .eq('email', email)
-        if (error3) {
+        if (error) {
 
             res.status(400).json(error)
             return;
