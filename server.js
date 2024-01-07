@@ -62,7 +62,7 @@ app.post("/face-detection", (req, res) => {
 })
 
 app.put("/image", (req, res) => {
-    update.imageUpdate(req, res, database)
+    update.imageUpdate(req, res, supabase)
 })
 
 app.listen(3001, () => {
