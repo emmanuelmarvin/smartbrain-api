@@ -61,8 +61,8 @@ app.post("/face-detection", (req, res) => {
     clarifai.detectFace(req, res)
 })
 
-app.put("/image", (req, res) => {
-    update.imageUpdate(req, res, supabase)
+app.put("/image", async (req, res) => {
+    await update.imageUpdate(req, res, supabase)
 })
 
 app.listen(3001, () => {
