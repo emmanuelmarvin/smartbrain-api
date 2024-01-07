@@ -9,7 +9,7 @@ const imageUpdate = async (req, res, supabase) => {
         return res.status(400).json("failed to update")
 
     } else {
-        const currentEntries = data[0]['entries'] + 1
+        let currentEntries = data[0]['entries'] + 1
         const { error } = await supabase
             .from('users')
             .update({
